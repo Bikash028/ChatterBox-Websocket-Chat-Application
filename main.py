@@ -1,36 +1,95 @@
 from fastapi import FastAPI, WebSocket
-import uvicorn
+from fastapi.responses import HTMLResponse
 
-# Initilize
 app = FastAPI()
 
-# Simple GET API to test server
-# check route
-@app.get("/")
-async def home():
-    return {
-        "message": "WebSocket Server is Running"
-        }
+active_users = {}
+user_map = {}
 
-# WebSocket endpoint
+page = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat App</title>
+</head>
+<body>
+
+<h3>Realtime Chat</h3>
+<div id="box" style="height:250px; overflow:auto; border:1px solid black;"></div>
+
+<input id="input" placeholder="Type message">
+<button onclick="sendMsg()">Send</button>
+
+<script>
+const box = document.getElementById("box");
+const username = prompt("Enter name:");
+
+const socket = new WebSocket("ws://127.0.0.1:8000/ws");
+
+socket.onopen = () => {
+    socket.send(JSON.stringify({name: username}));
+};
+
+socket.onmessage = (e) => {
+    const data = JSON.parse(e.data);
+    const p = document.createElement("p");
+
+    if(data.type === "msg"){
+        p.innerHTML = "<b>" + data.name + ":</b> " + data.text;
+    } else {
+        p.innerHTML = "<i>" + data.text + "</i>";
+    }
+
+    box.appendChild(p);
+};
+
+function sendMsg(){
+    const msg = document.getElementById("input").value;
+    socket.send(JSON.stringify({text: msg}));
+}
+</script>
+
+</body>
+</html>
+"""
+
+@app.get("/")
+async def index():
+    return HTMLResponse(page)
+
+
 @app.websocket("/ws")
-async def websocket_endpoint(socket: WebSocket):
-    # Accept the connection
-    await socket.accept()
-    print("Client connected")
+async def ws_handler(ws: WebSocket):
+    await ws.accept()
+
+    data = await ws.receive_json()
+    name = data.get("name", "Guest")
+
+    active_users[ws] = True
+    user_map[ws] = name
+
+    await notify_all({"type": "info", "text": f"{name} joined"})
 
     try:
         while True:
-            # Receive message from client
-            message = await socket.receive_text()
-            print(f"Received from client: {message}")
+            data = await ws.receive_json()
+            text = data.get("text")
 
-            # Send response back to client
-            await socket.send_text(f"Server received: {message}")
+            if text:
+                await notify_all({
+                    "type": "msg",
+                    "name": name,
+                    "text": text
+                })
 
-    except Exception as e:
-        print("client disconnected",e)
+    except:
+        active_users.pop(ws, None)
+        left = user_map.pop(ws, "User")
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="localhost", port=8000,reload=True) 
+        await notify_all({"type": "info", "text": f"{left} left"})
+
+
+async def notify_all(message):
+    for user in active_users:
+        await user.send_json(message)
 

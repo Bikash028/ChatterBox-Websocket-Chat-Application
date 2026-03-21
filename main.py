@@ -66,7 +66,7 @@ body { font-family: Arial; margin:20px; }
 
 <body>
 
-<h2>Real Time Chat</h2>
+<h2>RealTime Chat</h2>
 
 <label>Select Room:</label>
 <select id="room">

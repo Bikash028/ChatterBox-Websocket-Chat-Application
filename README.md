@@ -11,30 +11,71 @@ This module introduces real-time communication using WebSockets with FastAPI.
 
 * WebSocket connection setup
 * Send & receive messages
-* Echo server
-
-## 🛠️ Tech Used
-
-* FastAPI
-* Uvicorn
-* WebSockets
 
 ## 📚 Learning Outcome
 
 * Understand WebSockets
 * Client ↔ Server communication
+  
 
 
+# 💬 Module 2 (Basic Chat App)
+
+## 📌 Description
+
+This module builds a real-time chat system with multiple users.
+
+## 🎯 Features
+
+* Multiple users
+* Message broadcasting
+* Username system
+
+## 📚 Learning Outcome
+
+* Broadcasting messages
+* Event-driven communication
 
 
+# 🧠 Module 3 (Rooms + Typing Indicator)
+
+## 📌 Description
+
+Adds advanced chat features like rooms and typing indicators.
+
+## 🎯 Features
+
+* Chat rooms
+* Typing indicator
+* Join/leave notifications
 
 
+## 📚 Learning Outcome
+
+* Room-based messaging
+* Real-time UX improvements
+
+# 🌐 Chatterbox – Module 4 (Final Project)
+
+## 📌 Description
+
+Final integrated chat application with UI improvements and deployment readiness.
+
+## 🎯 Features
+
+* Rooms + Chat + Typing
+* Improved UI/UX
+* Error handling
 
 
+## 📚 Learning Outcome
 
-Module-3
-🎯 Features:
+* Full-stack real-time app
+* Deployment-ready project
 
-1.Chat Rooms
-2.Typing Indicator
-3.Join/Leave Messages
+  
+## 🛠️ Tech Used
+* FastAPI
+* uvicorn
+* Websocket
+* HTML/CSS/JS

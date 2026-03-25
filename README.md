@@ -1,80 +1,79 @@
 # ChatterBox-Websocket-Chat-Application
 
+Module 1 (WebSocket Basics)
 
-# 🚀 Module 1 (WebSocket Basics)
-
-## 📌 Description
+Description
 
 This module introduces real-time communication using WebSockets with FastAPI.
 
-## 🎯 Features
+Features
 
 * WebSocket connection setup
 * Send & receive messages
 
-## 📚 Learning Outcome
+Learning Outcome
 
 * Understand WebSockets
 * Client ↔ Server communication
   
 
 
-# 💬 Module 2 (Basic Chat App)
+Module 2 (Basic Chat App)
 
-## 📌 Description
+Description
 
 This module builds a real-time chat system with multiple users.
 
-## 🎯 Features
+Features
 
 * Multiple users
 * Message broadcasting
 * Username system
 
-## 📚 Learning Outcome
+Learning Outcome
 
 * Broadcasting messages
 * Event-driven communication
 
 
-# 🧠 Module 3 (Rooms + Typing Indicator)
+Module 3 (Rooms + Typing Indicator)
 
-## 📌 Description
+Description
 
 Adds advanced chat features like rooms and typing indicators.
 
-## 🎯 Features
+Features
 
 * Chat rooms
 * Typing indicator
 * Join/leave notifications
 
 
-## 📚 Learning Outcome
+Learning Outcome
 
 * Room-based messaging
 * Real-time UX improvements
 
-# 🌐 Chatterbox – Module 4 (Final Project)
+Chatterbox – Module 4 (Final Project)
 
-## 📌 Description
+Description
 
 Final integrated chat application with UI improvements and deployment readiness.
 
-## 🎯 Features
+Features
 
 * Rooms + Chat + Typing
 * Improved UI/UX
 * Error handling
 
 
-## 📚 Learning Outcome
+Learning Outcome
 
 * Full-stack real-time app
 * Deployment-ready project
 
   
-## 🛠️ Tech Used
+Tech Used
 * FastAPI
 * uvicorn
 * Websocket
